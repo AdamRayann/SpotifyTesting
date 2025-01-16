@@ -23,11 +23,24 @@ public class LoginPage {
         }
     }
 
-    public HomePage loginAsValidUser(String userName, String password) {
+    public HomePage loginAsValidUser(String userName, String password){
         driver.findElement(emailFieldBy).sendKeys(userName);
         driver.findElement(passwordFieldBy).sendKeys(password);
         driver.findElement(loginButtonBy).click();
 
         return new HomePage(driver);
+    }
+    public LoginPage loginAsInvalidUser(String userName , String password){
+        driver.findElement(emailFieldBy).sendKeys(userName);
+        driver.findElement(passwordFieldBy).sendKeys(password);
+        driver.findElement(loginButtonBy).click();
+
+        return new LoginPage(driver);
+    }
+
+
+    public boolean isOnLoginPage() {
+        String title = "Login";
+        return driver.getTitle().contains(title);
     }
 }

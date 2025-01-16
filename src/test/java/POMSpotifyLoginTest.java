@@ -27,6 +27,18 @@ public class POMSpotifyLoginTest {
         assertTrue(home.isLoggedInSuccessfully());
     }
 
+    @Test
+    public void testInvalidLogin() {
+        LoginPage loginPage1 = loginPage.loginAsInvalidUser("userr@example.com", "password123");
+        assertTrue(loginPage1.isOnLoginPage());
+
+        loginPage1 = loginPage.loginAsInvalidUser("user@example.com", "password");
+        assertTrue(loginPage1.isOnLoginPage());
+
+        loginPage1 = loginPage.loginAsInvalidUser("user@examplee.com", "password");
+        assertTrue(loginPage1.isOnLoginPage());
+    }
+
     @AfterEach
     public void tearDown() {
         driver.quit();
